@@ -34,8 +34,7 @@ elem.send_keys(senha.replace('\n',''))
 elem.send_keys(Keys.RETURN)
 
 
-for i in range(7):
-    
+for i in range(7):    
     material_click(i, driver)
 
 
