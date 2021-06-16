@@ -2,16 +2,19 @@ import time, os, shutil
 from pathlib import Path
 
 def move_files(i, files):
-    
-    user_data =  open('user_login.txt','r')
-    path = user_data.readlines()[2]
-    new_path = []
-    for item in os.listdir(path):
-        new_path.append(path.join(item))
-    new_path.sort(key=os.path.getmtime, reverse=True)
-    destination = path.join(f'/{i}')
-    for file in new_path[0,files]:
-        shutil.move(path, f'./{i}')
+    if files == 0:
+        pass
+    else:
+        user_data =  open('user_login.txt','r')
+        path = user_data.readlines()[2]
+        new_path = list(map(lambda item: f'{path}/{item}', os.listdir(path)))   
+        new_path.sort(key=os.path.getmtime, reverse=True)
+        destination = f'./{i}/'
+        if files == 1:
+            shutil.move(new_path[0], destination)
+        else:
+            for file in new_path[0:files]:
+                shutil.move(file, destination)
         
 
 def check_path():
@@ -53,7 +56,6 @@ def material_click(index, driver):
             pass
         time.sleep(10)
         move_files(index, files)
-        time.sleep(5)
         driver.get('https://sigaa.ifsc.edu.br/sigaa/portais/discente/discente.jsf')
     else:
         try:
@@ -75,6 +77,5 @@ def material_click(index, driver):
             pass
         time.sleep(10)    
         move_files(index, files)
-        time.sleep(5)
         driver.get('https://sigaa.ifsc.edu.br/sigaa/portais/discente/discente.jsf')
 
