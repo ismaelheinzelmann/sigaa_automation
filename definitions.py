@@ -66,7 +66,7 @@ def material_click(index, driver):
         materia = driver.find_element_by_id(f"form_acessarTurmaVirtualj_id_{index}:turmaVirtual") 
         materia.click()
         for d in range(10):
-            for i in range(10):
+            for i in range(50):
                 try:
                     material = driver.find_element_by_id(f"formAva:j_id_jsp_1220730176_255:{i}:listaMateriais:{d}:idInserirMaterialArquivo")
                     if driver.find_element_by_id(f'formAva:j_id_jsp_1220730176_255:{i}:listaMateriais:{d}:idInserirMaterialArquivo').text in check_files():
